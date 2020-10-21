@@ -1,8 +1,7 @@
 import React from 'react';
 import { Services } from './http-services';
 import { Switch, Route, BrowserRouter, Link } from 'react-router-dom';
-import { Home } from './pages/Home';
-import {Todo} from './pages/Todo';
+import { Home, Todo } from './pages/index';
 
 export class Application extends React.Component {
     constructor(props) {
