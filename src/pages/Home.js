@@ -5,6 +5,7 @@ import { Infos } from '../Infos';
 
 export const Home = props => <>
     <CustomMap onCountryClick={props.onCountryClick} allCountries={props.allCountries} />
-    <Link to='/todo'>Voir la liste des todos</Link>
+    <Link to='/todo'>Voir la liste des todos</Link> <br />
+    <Link to='/persistance'>Persistance</Link> <br />
     <Infos currentCountry={props.currentCountry} />
 </>;
