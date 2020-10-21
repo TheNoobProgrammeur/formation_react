@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import DataBase from '../data/db';
 
 export const ToDo = () => {
+ 
     const [todoList, updateToDoList] = useState([]);
     const [currentTodoDescription, updateCurrentTodoDescription] = useState('');
+
+    DataBase.todos.toArray().then(results => {
+      updateToDoList(results)
+    });
+
+
     const addTodo = () => {
         const tabCopy = [...todoList];
 
@@ -15,12 +23,12 @@ export const ToDo = () => {
 
         tabCopy.push(newToDo);
         updateToDoList(tabCopy);
+        DataBase.todos.add(newToDo);
     }
 
     const onTextInputChange = (element) =>{
         updateCurrentTodoDescription(element.target.value);
     }
-
 
 
     const onToDoChange = (domElement, toDo) => {
@@ -34,27 +42,39 @@ export const ToDo = () => {
         <Link to='/'>Retour vers la home</Link>
         <h1>liste des todos</h1>
         
+        <div className="container">
+          <input
+            onChange={onTextInputChange}
+            placeholder={"indiquez la description de votre tâche"}
+            type="text"
+          />
          
-         <ul className="list-group">
-            {todoList.map((todo, index) => (
-                <li key={index} className="list-group-item">
-                    <input
-                        onChange={(element) => onToDoChange(element, todo)}
-              className="form-check-input mr-1"
-              type="checkbox"
-              value={todo.done}
-            />
-            {todo.desc}
-          </li>
-        ))}
-      </ul>
+         <form className="mb-3">
+        <ul className="list-group">
+          {todoList.map((todo, index) => (
+            <li key={index} className="list-group-item">
+              <div className="form-check">
+                <label className="visually-hidden">
+                  <input
+                    onChange={(element) => onToDoChange(element, todo)}
+                    className="form-check-input mr-1"
+                    type="checkbox"
+                    value={todo.done}
+                  />
+                  {todo.desc}
+                </label>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </form>
 
 
         <br />
-
-
-        <input onChange={onTextInputChange} placeholder={"indiquez la description de votre tâche"} type="text"/><br />
-        <button onClick={addTodo}>add</button>
+        <button 
+         disabled={currentTodoDescription.length == 0 ? true : false}
+          onClick={addTodo}>add</button>
+        </div>
     </>
 };
 

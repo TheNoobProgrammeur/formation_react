@@ -24,6 +24,7 @@
   "dependencies": {
     "axios": "^0.20.0",
     "bootstrap": "^4.5.3",
+    "dexie": "^3.0.2",
     "leaflet": "^1.7.1",
     "react": ">=15",
     "react-dom": "^16.8.0",
