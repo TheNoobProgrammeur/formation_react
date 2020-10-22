@@ -19,6 +19,7 @@ export const  FormPost = props => {
                 alert(error.response.data.content)
             }
         )
+        updateCurrentPostDescription('')
     }
 
     return <>
@@ -26,6 +27,7 @@ export const  FormPost = props => {
             <input
                 placeholder={"indiquez la description de votre post"}
                 onChange={onTextInputChange}
+                value={currentPostDescription}
                 type="text" />
         </form>
         <button onClick={sendPost}>Valider</button>

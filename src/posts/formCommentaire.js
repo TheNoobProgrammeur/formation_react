@@ -3,7 +3,7 @@ import {Services} from "../http-services/servicesPosts";
 
 export const  FormCommentaire = props => {
 
-    const [currentCommentaireDescription, updateCurrentCommentaireDescription] = useState('');
+    const [currentCommentaire, updateCurrentCommentaireDescription] = useState('');
 
 
     const onTextInputChange = (element) =>{
@@ -12,7 +12,7 @@ export const  FormCommentaire = props => {
 
     const sendPost = () => {
         const newCommantaire = {
-            content: currentCommentaireDescription,
+            content: currentCommentaire,
             post_id: props.id
         }
         Services.postCommantaire(newCommantaire)
@@ -20,7 +20,8 @@ export const  FormCommentaire = props => {
                     alert(error.response.data.content)
                 }
             )
-        updateCurrentCommentaireDescription("")
+        updateCurrentCommentaireDescription('')
+
     }
 
     return <>
@@ -28,6 +29,7 @@ export const  FormCommentaire = props => {
             <input
                 placeholder={"votre commantaire"}
                 onChange={onTextInputChange}
+                value={currentCommentaire}
                 type="text" />
         </form>
         <button onClick={sendPost}>Valider</button>
