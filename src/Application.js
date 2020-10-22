@@ -1,7 +1,8 @@
 import React from 'react';
-import { Services } from './http-services';
+import { Services } from './http-services/servicesMap';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { Home , ToDo ,Persistance } from './pages/index';
+import {AffichagePosts} from "./pages/AffichagePosts";
 
 export class Application extends React.Component {
     constructor(props) {
@@ -27,6 +28,7 @@ export class Application extends React.Component {
                 </Route>
                 <Route render={props => <ToDo  {...props} />} exact path="/todo" />
                 <Route render={props => <Persistance></Persistance> } exact path="/persistance" />
+                <Route render={props => <AffichagePosts></AffichagePosts> } exact path="/posts" />
             </Switch>
         </BrowserRouter>
     }
